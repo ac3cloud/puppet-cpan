@@ -23,7 +23,10 @@ class cpan::params {
   }
   case $::osfamily {
     'Debian': {
-      $common_os_package = ['perl-modules']
+      if ($::lsbdistcodename == 'xenial') { 
+        $common_os_package = ['perl-modules-5.22']
+      } else { 
+        $common_os_package = ['perl-modules'] }
       if $local_lib {
         $local_lib_package  = ['liblocal-lib-perl']
       } else {
